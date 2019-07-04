@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_app/router/application.dart';
 import 'package:flutter_app/router/routers.dart';
 import 'package:flutter_app/ui/page/user_login_main_page.dart';
@@ -13,19 +14,21 @@ void main() => runApp(new GuidePageWidget());
 class GuidePageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2.0;
     //取消状态栏 虚拟按键
 //    SystemChrome.setEnabledSystemUIOverlays([]);
     //开启状态栏虚拟按键
 //    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: new Scaffold(
         body: new Stack(
           fit: StackFit.expand,
           alignment: Alignment.bottomRight,
           //全屏图片
           children: <Widget>[
-            new Image.asset(
-              'images/main_login_bg.jpg',
+            Image.asset(
+              'assets/images/main_login_bg.jpg',
               fit: BoxFit.cover,
             ),
 //            Positioned(
@@ -37,7 +40,7 @@ class GuidePageWidget extends StatelessWidget {
 //                    style: TextStyle(fontSize: 18.0, color: Colors.blue),
 //                  ),
 //                )),
-            new ClickWidget(),
+            ClickWidget(),
           ],
         ),
       ),

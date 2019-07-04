@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 import 'package:flutter_app/animator/photohero.dart';
 import 'package:flutter_app/router/fluro_navigator.dart';
 import 'package:flutter_app/router/login_router.dart';
+import 'package:flutter_app/ui/page/user_phone_login_page.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
@@ -41,7 +42,7 @@ class UserLoginMainState extends State<UserLoginWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: new Image.asset(
-                      'images/main_login_bg.jpg',
+                      'assets/images/main_login_bg.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -51,7 +52,7 @@ class UserLoginMainState extends State<UserLoginWidget> {
           ],
         ),
         PhotoHeroWidget(
-            photo: 'images/main_login_bg.jpg',
+            photo: 'assets/images/main_login_bg.jpg',
             height: double.infinity,
             width: double.infinity,
             onTap: () {}),

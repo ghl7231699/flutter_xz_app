@@ -7,6 +7,7 @@ class UserLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "手机登录",
       home: new Scaffold(
         body: UserLoginWidget(),
@@ -27,7 +28,7 @@ class UserLoginState extends State<UserLoginWidget> {
       child: Column(
         children: <Widget>[
           PhotoHeroWidget(
-            photo: 'images/main_login_bg.jpg',
+            photo: 'assets/images/main_login_bg.jpg',
             height: 300.0,
             width: double.infinity,
           ),

@@ -11,7 +11,7 @@ class NavigatorUtils {
     Application.router.navigateTo(context, path,
         replace: replace,
         clearStack: clearStack,
-        transition: TransitionType.native);
+        transition: TransitionType.inFromRight);
   }
 
   static pushResult(

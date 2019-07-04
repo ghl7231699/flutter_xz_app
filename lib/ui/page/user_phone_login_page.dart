@@ -51,18 +51,6 @@ class UserPhoneLoginState extends State<UserPhoneLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        backgroundColor: Colors.white,
-//        title: Container(
-//          alignment: Alignment.centerRight,
-//          child: Text(
-//            '验证码登录',
-//            style: TextStyle(
-//              fontSize: 14.0,
-//            ),
-//          ),
-//        ),
-//      ),
       appBar: MyAppBar(
         isBack: false,
         actionName: '验证码登录',
@@ -78,6 +66,12 @@ class UserPhoneLoginState extends State<UserPhoneLoginPage> {
 //              child: _buildBody(),
 //            ),
       body: _buildBody(),
+//      body: Container(
+//        child: Hero(
+//          tag: "spalsh",
+//          child: _buildBody(),
+//        ),
+//      ),
     );
   }
 
