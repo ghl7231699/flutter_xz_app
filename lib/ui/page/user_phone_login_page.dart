@@ -51,6 +51,7 @@ class UserPhoneLoginState extends State<UserPhoneLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: MyAppBar(
         isBack: false,
         actionName: '验证码登录',
