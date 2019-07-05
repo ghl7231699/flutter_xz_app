@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_app/ui/widget/app_bar.dart';
 
 import 'income_widget.dart';
+import 'mange_item_widget.dart';
 
 ///个人中心
 
@@ -39,14 +40,21 @@ class PersonalCenter extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Positioned(
-            height: 200,
-            width: 360,
+          Column(
+            children: <Widget>[
+              Container(
+                height: 200,
+                width: 360,
+                margin: const EdgeInsets.only(top: 50.0),
+                alignment: Alignment.topCenter,
 //            child: Padding(
 //              padding: const EdgeInsets.only(
 //                  left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
-            child: IncomeColumnWidget(),
+                child: IncomeColumnWidget(),
 //            ),
+              ),
+              ManageColumnWidget(),
+            ],
           )
         ],
       ),
