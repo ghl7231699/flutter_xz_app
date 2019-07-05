@@ -14,6 +14,10 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.actionName: "",
       this.backImg: "assets/images/ic_back_black.png",
       this.onPressed,
+      this.showIconRight: false,
+      this.iconRight,
+      this.showIconRight2: false,
+      this.iconRight2,
       this.isBack: true})
       : super(key: key);
 
@@ -24,6 +28,10 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String actionName;
   final VoidCallback onPressed;
   final bool isBack;
+  final bool showIconRight;
+  final IconData iconRight;
+  final bool showIconRight2;
+  final IconData iconRight2;
 
   @override
   _MyAppBarState createState() => _MyAppBarState();
@@ -97,27 +105,68 @@ class _MyAppBarState extends State<MyAppBar> {
                   : Gaps.empty,
               Positioned(
                 right: 0.0,
-                child: Theme(
-                  data: ThemeData(
-                      buttonTheme: ButtonThemeData(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    minWidth: 60.0,
-                  )),
-                  child: widget.actionName.isEmpty
-                      ? Container()
-                      : FlatButton(
-                          child: Text(widget.actionName),
-                          textColor: getColor(),
-                          highlightColor: Colors.transparent,
-                          onPressed: widget.onPressed,
-                        ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Theme(
+                      data: ThemeData(
+                          buttonTheme: ButtonThemeData(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        minWidth: 60.0,
+                      )),
+                      child: widget.actionName.isEmpty
+                          ? Container()
+                          : FlatButton(
+                              child: Text(widget.actionName),
+                              textColor: getColor(),
+                              highlightColor: Colors.transparent,
+                              onPressed: widget.onPressed,
+                            ),
+                    ),
+//                    Theme(
+//                      data: ThemeData(
+//                          buttonTheme: ButtonThemeData(
+//                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//                        minWidth: 60.0,
+//                      )),
+//                      child: widget.actionName.isEmpty
+//                          ? Container()
+//                          : FlatButton(
+//                              child: Text(widget.actionName),
+//                              textColor: getColor(),
+//                              highlightColor: Colors.transparent,
+//                              onPressed: widget.onPressed,
+//                            ),
+//                    )
+                  ],
                 ),
               ),
-//            IconButton(
-//              icon: Icon(Icons.add),
-//              highlightColor: Colors.transparent,
-//              onPressed: widget.onPressed,
-//            )
+              Positioned(
+                right: 0.0,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Offstage(
+                      offstage: !widget.showIconRight,
+                      child: IconButton(
+                        icon: Icon(widget.iconRight),
+                        highlightColor: Colors.transparent,
+                        onPressed: widget.onPressed,
+                      ),
+                    ),
+                    Offstage(
+                      offstage: !widget.showIconRight2,
+                      child: IconButton(
+                        icon: Icon(widget.iconRight2),
+                        highlightColor: Colors.transparent,
+                        onPressed: widget.onPressed,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

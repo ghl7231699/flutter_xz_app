@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/mine/mine_router.dart';
 import 'package:flutter_app/navigationbar/navigationbar.dart';
 import 'package:flutter_app/router/router_init.dart';
 import 'package:flutter_app/ui/widget/web_view_page.dart';
@@ -39,6 +40,7 @@ class Routers {
 
     /// 各自路由由各自模块管理，统一在此添加初始化
     _listProvider.add(LoginRouter());
+    _listProvider.add(PersonRouter());
 
     /// 初始化路由
     _listProvider.forEach((routerProvider) {

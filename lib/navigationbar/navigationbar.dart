@@ -60,10 +60,10 @@ class NavigationState extends State<NavigationBarWidget> {
         onPageChanged: _onPageChanged,
 //        children: widgets,
         children: <Widget>[
+          new Home(),
           new ArticlePage(),
           new ListViewApp(),
           new HomePage(),
-          new Home(),
         ],
       ),
       bottomNavigationBar: new BottomNavigationBar(

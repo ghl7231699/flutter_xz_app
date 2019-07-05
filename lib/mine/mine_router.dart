@@ -4,7 +4,7 @@ import 'package:flutter_app/router/router_init.dart';
 import 'mine_page.dart';
 
 ///登录模块路由
-class LoginRouter implements IRouterProvider {
+class PersonRouter implements IRouterProvider {
   static String personPage = "/person";
 
   @override

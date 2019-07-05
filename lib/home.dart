@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/router/fluro_navigator.dart';
 import 'package:flutter_app/ui/page/page_article.dart';
 
+import 'mine/mine_router.dart';
 import 'person.dart';
 import 'ui/page/page_common.dart';
 import 'ui/page/page_search.dart';
@@ -16,6 +18,8 @@ class Home extends StatelessWidget {
 
     void onListButtonClick() {
       _pushNext((context) => new HomePage());
+
+      NavigatorUtils.push(context, PersonRouter.personPage, replace: true);
     }
 
     void onSearchButtonClick() {
