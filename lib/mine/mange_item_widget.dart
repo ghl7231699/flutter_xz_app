@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/utils/image_utils.dart';
 
 ///个人中心  管理模块
 ///
@@ -33,16 +34,14 @@ class ManageColumnState extends State<ManageColumnWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        _buildItem("管理房源"),
-        _buildItem("管理游记"),
-        _buildItem("学习经验"),
+        _buildItem("管理房源", icon: Icons.assignment_ind),
+        _buildItem("管理游记", icon: Icons.assignment),
+        _buildItem("学习经验", icon: Icons.school),
       ],
     );
   }
 
-  Widget _buildItem(
-    String title,
-  ) {
+  Widget _buildItem(String title, {String iconPath, IconData icon}) {
     return InkWell(
       onTap: null,
       child: Container(
@@ -55,26 +54,31 @@ class ManageColumnState extends State<ManageColumnWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Icon(
-              Icons.assignment_ind,
-              color: Colors.blue,
-            ),
+            (iconPath == null || iconPath.isEmpty)
+                ? itemIcon(icon)
+                : loadAssetImage(iconPath),
             Text(
               title,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue,
+                color: Color(0xFFE35120),
               ),
             )
           ],
         ),
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: radius, topRight: radius, bottomLeft: radius),
+            borderRadius: BorderRadius.all(radius),
             border: Border.all(width: 1.0, color: Colors.white)),
       ),
+    );
+  }
+
+  Icon itemIcon(IconData icon) {
+    return Icon(
+      icon,
+      color: Color(0xFFE35120),
     );
   }
 }

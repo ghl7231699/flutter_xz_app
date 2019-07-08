@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
-import 'package:flutter_app/animator/photohero.dart';
 import 'package:flutter_app/router/fluro_navigator.dart';
 import 'package:flutter_app/router/login_router.dart';
-import 'package:flutter_app/ui/page/user_phone_login_page.dart';
+import 'package:flutter_app/utils/image_utils.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
@@ -34,28 +33,15 @@ class UserLoginMainState extends State<UserLoginWidget> {
       fit: StackFit.expand,
       alignment: Alignment.bottomCenter,
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: new Image.asset(
-                      'assets/images/main_login_bg.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+        Image.asset(
+          'assets/images/main_login_bg.jpg',
+          fit: BoxFit.cover,
         ),
-        PhotoHeroWidget(
-            photo: 'assets/images/main_login_bg.jpg',
-            height: double.infinity,
-            width: double.infinity,
-            onTap: () {}),
+//        PhotoHeroWidget(
+//            photo: 'assets/images/main_login_bg.jpg',
+//            height: double.infinity,
+//            width: double.infinity,
+//            onTap: () {}),
         Positioned(
             left: 30,
             bottom: 200,
@@ -65,7 +51,8 @@ class UserLoginMainState extends State<UserLoginWidget> {
               children: <Widget>[
                 //微信登录
                 buildContentImage(
-                    "使用微信一键登录", Colors.green, Icons.assignment_ind, true),
+                    "使用微信一键登录", Colors.green, Icons.assignment_ind, true,
+                    iconPath: 'icon_login_weixin'),
                 //手机登录
                 buildContentImage(
                     '手机方式登录', Color(0xFFFF5F7A), Icons.person, false)
@@ -76,7 +63,8 @@ class UserLoginMainState extends State<UserLoginWidget> {
   }
 
   Widget buildContentImage(
-      String content, Color contentColors, IconData iconLeft, bool show) {
+      String content, Color contentColors, IconData iconLeft, bool show,
+      {String iconPath}) {
     return new InkWell(
       onTap: () {
         show ? onWXTap() : onPhoneTap();
@@ -88,16 +76,22 @@ class UserLoginMainState extends State<UserLoginWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            new Container(
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            Container(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  new Icon(
-                    iconLeft,
-                    color: contentColors,
+                  Container(
+                    alignment: Alignment.center,
+                    child: iconPath == null || iconPath.isEmpty
+                        ? Icon(
+                            iconLeft,
+                            color: contentColors,
+                          )
+                        : loadAssetImage(iconPath,
+                            width: 20, height: 20, color: contentColors),
                   ),
-                  new Container(
+                  Container(
                     margin: EdgeInsets.only(left: 10),
                     child: Text(
                       content,
@@ -112,7 +106,7 @@ class UserLoginMainState extends State<UserLoginWidget> {
                           margin: EdgeInsets.only(left: 100),
                           width: 25.0,
                           height: 25,
-                          child: new Icon(
+                          child: Icon(
                             Icons.arrow_forward,
                             color: Colors.white,
                           ),
@@ -125,7 +119,7 @@ class UserLoginMainState extends State<UserLoginWidget> {
                       : new Container(),
                 ],
               ),
-            )
+            ),
           ],
         ),
         decoration: BoxDecoration(

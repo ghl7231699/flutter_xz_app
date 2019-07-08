@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 /// 加载本地资源图片
-Widget loadAssetImage(String name, {double width, double height, BoxFit fit}) {
+Widget loadAssetImage(String name,
+    {double width, double height, BoxFit fit, Color color}) {
   return Image.asset(
     Utils.getImgPath(name),
     height: height,
     width: width,
     fit: fit,
+    color: color,
   );
 }
 
