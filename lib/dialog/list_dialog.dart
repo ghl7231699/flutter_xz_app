@@ -17,11 +17,6 @@ class ListDialog extends Dialog {
         //创建透明层
         type: MaterialType.transparency, //透明类型(dialog的半透明效果)
         child: Center(
-//          child: ListViewWidget(
-//            datas: datas,
-//            width: 300,
-//            height: 400,
-//          ),
           child: SizedBox(
             width: 300.0,
             height: 500.0,
@@ -37,7 +32,7 @@ class ListDialog extends Dialog {
               child: ListViewWidget(
                 datas: datas,
                 width: 300,
-                height: 400,
+                height: 500,
                 callback: callback,
               ),
             ),

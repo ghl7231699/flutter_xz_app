@@ -19,7 +19,7 @@ class ListViewWidget extends StatefulWidget {
       this.showTitle: false,
       this.datas,
       this.oneBtn: false,
-      this.itemAlign,
+      this.itemAlign: Alignment.center,
       this.width,
       this.height,
       this.callback})
@@ -31,20 +31,20 @@ class ColumnState extends State<ListViewWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        buildTitle("取消", context),
         Expanded(
             child: Container(
           width: widget.width,
           height: widget.height,
           child: _buildSuggestion(),
         )),
-        buildTitle(false, "取消", context),
       ],
     );
   }
 
   Widget _buildSuggestion() {
     return new ListView.builder(
-      padding: const EdgeInsets.all(16.0),
+//      padding: const EdgeInsets.all(16.0),
       // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
       // 在偶数行，该函数会为单词对添加一个ListTile row.
       // 在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。
@@ -65,41 +65,46 @@ class ColumnState extends State<ListViewWidget> {
     );
   }
 
-  Widget buildTitle(bool showTitle, String title, BuildContext context) {
-    return Offstage(
-        offstage: showTitle,
-        child: InkWell(
-          onTap: widget.callback,
-          child: Container(
-            height: 56,
-            alignment: Alignment.center,
-            child: Text(
-              title == null || title.isEmpty ? "取消" : title,
-              style: TextStyle(fontSize: 18, color: Colors.black),
-              textAlign: TextAlign.center,
-            ),
-            decoration: BoxDecoration(
-                border:
-                    Border(top: BorderSide(color: Colors.grey, width: 0.2))),
-          ),
-        ));
+  Widget buildTitle(String title, BuildContext context) {
+    return Container(
+      height: 56,
+      alignment: Alignment.centerLeft,
+//        width: double.infinity,
+      margin: const EdgeInsets.only(left: 10.0),
+      child: InkWell(
+        onTap: widget.callback,
+        child: Text(
+          title == null || title.isEmpty ? "取消" : title,
+          style: TextStyle(fontSize: 18, color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      decoration: BoxDecoration(
+//          color: Colors.red,
+        border: Border(
+          bottom: BorderSide(color: Colors.grey, width: 0.2),
+        ),
+      ),
+    );
   }
 
   ///列表item and 分割线<Widget>[]
   Widget buildItemWithDivider(String suggestion) {
     return Container(
-      alignment: Alignment.center,
-      height: 64,
-      child: SizedBox(
-        child: Text(
-          suggestion,
-          style: TextStyle(fontSize: 18, color: Colors.black),
+        alignment: widget.itemAlign,
+        height: 64,
+        child: SizedBox(
+          child: Text(
+            suggestion,
+            style: TextStyle(fontSize: 18, color: Colors.black),
+          ),
         ),
-      ),
-      decoration: ShapeDecoration(
-          shape: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey, width: 0.2))),
-    );
+        decoration: BoxDecoration(
+//          color: Colors.yellow,
+          border: Border(
+            bottom: BorderSide(color: Colors.grey, width: 0.2),
+          ),
+        ));
   }
 
   Widget _buildRow(TextStyle _biggerFont, String suggestion) {
