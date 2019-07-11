@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/dialog/show_dialog.dart';
+import 'package:flutter_app/ui/guide_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc_second_page.dart';
 import 'counter_bloc.dart';
 
 void main() => runApp(App());
@@ -53,10 +54,10 @@ class AppState extends State<AppWidget> {
                     child: RaisedButton(
                       child: Text('跳转第二页'),
                       onPressed: () {
-//                        _counterBloc.dispatch(CounterEvent.increment);
-//
-//                        Navigator.of(context).push(MaterialPageRoute(
-//                            builder: (context) => CountSecondPage()));
+                        _counterBloc.dispatch(CounterEvent.increment);
+
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => GuidePageWidget()));
 
 //                        LoadingDialog
 //                        showDialog(
@@ -76,12 +77,12 @@ class AppState extends State<AppWidget> {
 //                          },
 //                        );
 
-                        showColumnDialog(
-                          context,
-                          () {
-                            Navigator.of(context).pop();
-                          },
-                        );
+//                        showColumnDialog(
+//                          context,
+//                          () {
+//                            Navigator.of(context).pop();
+//                          },
+//                        );
 //                        showBottomDialog(context);
                       },
                     ),

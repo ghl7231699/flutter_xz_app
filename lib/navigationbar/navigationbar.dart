@@ -48,6 +48,8 @@ class NavigationState extends State<NavigationBarWidget> {
     //开启状态栏虚拟按键
     SystemChrome.setEnabledSystemUIOverlays(
         [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+
+    Navigator.pop(context);
     super.initState();
   }
 

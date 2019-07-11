@@ -1,20 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/dialog/loading_dialog.dart';
-import 'package:flutter_app/login/authentication_bloc.dart';
-import 'package:flutter_app/login/authentication_events.dart';
-import 'package:flutter_app/login/authentication_state.dart';
-import 'package:flutter_app/login/login_page.dart';
 import 'package:flutter_app/login/user_repository.dart';
 import 'package:flutter_app/navigationbar/navigationbar.dart';
-import 'package:flutter_app/router/application.dart';
-import 'package:flutter_app/router/routers.dart';
 import 'package:flutter_app/ui/splash_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-///引导页
-///TODO  添加引导页+开屏广告
+import 'authentication_bloc.dart';
+import 'authentication_events.dart';
+import 'authentication_state.dart';
+import 'loading.dart';
+import 'login_page.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -26,13 +21,13 @@ class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print(transition);
+    print(transition.event);
   }
 
   @override
   void onError(Bloc bloc, Object error, StackTrace stacktrace) {
     super.onError(bloc, error, stacktrace);
-    print(error);
+    print(error.toString());
   }
 }
 
@@ -45,36 +40,15 @@ void main() {
         return AuthenticationBloc(userRepository: userRepository)
           ..dispatch(AppStarted());
       },
-      child: GuidePageWidget(
-        userRepository: userRepository,
-      ),
+      child: App(userRepository: userRepository),
     ),
   );
 }
 
-void guidePageWidget() {
-  final router = Router();
-  Routers.configureRouters(router);
-  Application.router = router;
-}
-
-class GuidePageWidget extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    timeDilation = 2.0;
-//    //取消状态栏 虚拟按键
-////    SystemChrome.setEnabledSystemUIOverlays([]);
-//    //开启状态栏虚拟按键
-////    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
-//    return new MaterialApp(
-//      debugShowCheckedModeBanner: false,
-//      home: splashPage(userRepository),
-//    );
-//  }
-
+class App extends StatelessWidget {
   final UserRepository userRepository;
 
-  GuidePageWidget({Key key, @required this.userRepository}) : super(key: key);
+  App({Key key, @required this.userRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +71,7 @@ class GuidePageWidget extends StatelessWidget {
           }
           if (state is AuthenticationLoading) {
             //加载中
-            return Material(
-              child: LoadingDialog(),
-            );
+            return LoadingIndicator();
           }
           return SplashPage(
             userRepository: userRepository,

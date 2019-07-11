@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 import 'package:flutter_app/router/fluro_navigator.dart';
 import 'package:flutter_app/router/login_router.dart';
 import 'package:flutter_app/utils/image_utils.dart';
 
-void main() {
-  debugPaintSizeEnabled = true;
-  runApp(new UserLoginMainPage());
-}
-
 class UserLoginMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: "登录",
-      home: new Scaffold(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
         body: UserLoginWidget(),
       ),
     );
@@ -28,6 +23,11 @@ class UserLoginWidget extends StatefulWidget {
 
 class UserLoginMainState extends State<UserLoginWidget> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Stack(
       fit: StackFit.expand,
@@ -37,11 +37,6 @@ class UserLoginMainState extends State<UserLoginWidget> {
           'assets/images/main_login_bg.jpg',
           fit: BoxFit.cover,
         ),
-//        PhotoHeroWidget(
-//            photo: 'assets/images/main_login_bg.jpg',
-//            height: double.infinity,
-//            width: double.infinity,
-//            onTap: () {}),
         Positioned(
             left: 30,
             bottom: 200,
