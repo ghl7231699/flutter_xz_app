@@ -13,6 +13,15 @@ class AppStarted extends AuthenticationEvent {
   }
 }
 
+///登录验证中
+class Logging extends AuthenticationEvent {
+  @override
+  String toString() {
+    return 'Logging';
+  }
+}
+
+///登录
 class LoginIn extends AuthenticationEvent {
   final String token;
 
@@ -21,6 +30,14 @@ class LoginIn extends AuthenticationEvent {
   @override
   String toString() {
     return 'LoginIn{token: $token}';
+  }
+}
+
+///登录成功
+class LoginSucceed extends AuthenticationEvent {
+  @override
+  String toString() {
+    return 'LoginSucceed';
   }
 }
 

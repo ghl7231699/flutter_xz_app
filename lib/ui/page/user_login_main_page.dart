@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/login/user_repository.dart';
 import 'package:flutter_app/router/fluro_navigator.dart';
 import 'package:flutter_app/router/login_router.dart';
 import 'package:flutter_app/utils/image_utils.dart';
@@ -22,9 +23,12 @@ class UserLoginWidget extends StatefulWidget {
 }
 
 class UserLoginMainState extends State<UserLoginWidget> {
+
+  UserRepository userRepository;
   @override
   void initState() {
     super.initState();
+    userRepository = UserRepository();
   }
 
   @override

@@ -1,15 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/dialog/loading_dialog.dart';
 import 'package:flutter_app/login/authentication_bloc.dart';
 import 'package:flutter_app/login/authentication_events.dart';
 import 'package:flutter_app/login/authentication_state.dart';
-import 'package:flutter_app/login/login_page.dart';
 import 'package:flutter_app/login/user_repository.dart';
 import 'package:flutter_app/navigationbar/navigationbar.dart';
 import 'package:flutter_app/router/application.dart';
 import 'package:flutter_app/router/routers.dart';
+import 'package:flutter_app/ui/page/user_login_main_page.dart';
 import 'package:flutter_app/ui/splash_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,6 +38,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
+  guidePageWidget();
   runApp(
     BlocProvider<AuthenticationBloc>(
       builder: (context) {
@@ -59,19 +59,6 @@ void guidePageWidget() {
 }
 
 class GuidePageWidget extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    timeDilation = 2.0;
-//    //取消状态栏 虚拟按键
-////    SystemChrome.setEnabledSystemUIOverlays([]);
-//    //开启状态栏虚拟按键
-////    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
-//    return new MaterialApp(
-//      debugShowCheckedModeBanner: false,
-//      home: splashPage(userRepository),
-//    );
-//  }
-
   final UserRepository userRepository;
 
   GuidePageWidget({Key key, @required this.userRepository}) : super(key: key);
@@ -82,28 +69,22 @@ class GuidePageWidget extends StatelessWidget {
       home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
         bloc: BlocProvider.of<AuthenticationBloc>(context),
         builder: (BuildContext context, AuthenticationState state) {
+          //启动开屏页
           if (state is AuthenticationUninitialized) {
             return SplashPage(
               userRepository: userRepository,
             );
           }
           if (state is AuthenticationAuthenticated) {
-            //验证通过
+            //验证通过----->首页
             return NavigationBarWidget();
           }
           if (state is AuthenticationUnauthenticated) {
-            //本地未注册
-            return LoginPage(userRepository: userRepository);
+            //未注册登录---->登录
+            return UserLoginMainPage();
           }
-          if (state is AuthenticationLoading) {
-            //加载中
-            return Material(
-              child: LoadingDialog(),
-            );
-          }
-          return SplashPage(
-            userRepository: userRepository,
-          );
+          //默认返回登录界面
+          return UserLoginMainPage();
         },
       ),
     );

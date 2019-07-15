@@ -49,7 +49,7 @@ class NavigationState extends State<NavigationBarWidget> {
     SystemChrome.setEnabledSystemUIOverlays(
         [SystemUiOverlay.top, SystemUiOverlay.bottom]);
 
-    Navigator.pop(context);
+//    Navigator.pop(context);
     super.initState();
   }
 

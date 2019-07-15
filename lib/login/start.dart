@@ -56,26 +56,22 @@ class App extends StatelessWidget {
       home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
         bloc: BlocProvider.of<AuthenticationBloc>(context),
         builder: (BuildContext context, AuthenticationState state) {
-          if (state is AuthenticationUninitialized) {
-            return SplashPage(
-              userRepository: userRepository,
-            );
-          }
-          if (state is AuthenticationAuthenticated) {
-            //验证通过
-            return NavigationBarWidget();
-          }
-          if (state is AuthenticationUnauthenticated) {
-            //本地未注册
-            return LoginPage(userRepository: userRepository);
-          }
-          if (state is AuthenticationLoading) {
-            //加载中
-            return LoadingIndicator();
-          }
-          return SplashPage(
-            userRepository: userRepository,
-          );
+//          if (state is AuthenticationUninitialized) {
+//            return SplashPage(
+//              userRepository: userRepository,
+//            );
+//          }
+//          if (state is AuthenticationAuthenticated) {
+//            //验证通过
+//            return NavigationBarWidget();
+//          }
+//          if (state is AuthenticationUnauthenticated) {
+//            //本地未注册
+//            return LoginPage(userRepository: userRepository);
+//          }
+//          return SplashPage(
+//            userRepository: userRepository,
+//          );
         },
       ),
     );
