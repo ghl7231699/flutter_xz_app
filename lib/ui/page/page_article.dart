@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:banner_view/banner_view.dart';
+import 'package:fake_wechat/fake_wechat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_app/http/api.dart';
@@ -28,6 +31,8 @@ class _ArticlePageState extends State<ArticlePage> {
 
   ///分页加载，当前页码
   var curPage = 0;
+  StreamSubscription<WechatAuthResp> _auth;
+  Wechat wechat;
 
   @override
   void initState() {
@@ -49,6 +54,12 @@ class _ArticlePageState extends State<ArticlePage> {
     /// 因为这一个方法就是去请求文章列表与banner图，下拉刷新需要重新请求
     /// 然而初始化数据也是请求相同的数据，所以在initState初始化数据的时候手动请求一次！
     _pullToRefresh();
+
+//    _auth = wechat.authFinishResp().listen(_listenAuthFinish);
+  }
+
+  void _listenAuthFinish(WechatQrauthResp qrauthResp) {
+    print('resp: ${qrauthResp.errorCode} - ${qrauthResp.authCode}');
   }
 
   @override

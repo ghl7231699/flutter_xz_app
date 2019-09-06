@@ -43,6 +43,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.14.11"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.1"
   cookie_jar:
     dependency: transitive
     description:
@@ -50,6 +57,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.1"
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -78,6 +92,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.6"
+  fake_wechat:
+    dependency: "direct main"
+    description:
+      name: fake_wechat
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.3"
   fluro:
     dependency: "direct main"
     description:
@@ -109,6 +130,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.5"
+  jaguar_serializer:
+    dependency: transitive
+    description:
+      name: jaguar_serializer
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.12"
   keyboard_actions:
     dependency: "direct main"
     description:
@@ -219,6 +247,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.6"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.2"
   vector_math:
     dependency: transitive
     description:
@@ -234,5 +269,5 @@ packages:
     source: hosted
     version: "0.3.7+1"
 sdks:
-  dart: ">=2.3.0 <3.0.0"
+  dart: ">=2.3.0-dev.0.5.flutter-a1668566e5 <3.0.0"
   flutter: ">=1.2.0 <2.0.0"
